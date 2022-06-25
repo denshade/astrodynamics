@@ -34,11 +34,24 @@
             <input type="text" class="form-control" id="M" placeholder="Big Mass for gravitational parameter [kg]" onchange="calculateAll()">
             <div class="hero-unit">
                 <p>
-                    Sun: 1.9885E30 kg
+                    Sun: 1.9885E30 kg<BR/>
                     Earth: 5.97237E24 kg
                 </p>
             </div>
         </div>
+        <div class="mb-3">
+            <label for="acceleration" class="form-label">acceleration</label>
+            <input type="text" class="form-control" id="accel0" placeholder=" [m/s^2]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="accel1" placeholder=" [m/s^2]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="accel2" placeholder=" [m/s^2]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="acceleration" class="form-label">position</label>
+            <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="pos1" placeholder=" [m]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="pos2" placeholder=" [m]" onchange="calculateAll()">
+        </div>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script>
