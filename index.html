@@ -25,7 +25,20 @@
             <label for="p" class="form-label">p</label>
             <input type="text" class="form-control" id="p" placeholder="semi-latus rectum" onchange="calculateAll()">
         </div>
-        
+        <div class="mb-3">
+            <label for="µ" class="form-label">µ</label>
+            <input type="text" class="form-control" id="µ" placeholder="Standard gravitational parameter [m^3 s^−2]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="M" class="form-label">M</label>
+            <input type="text" class="form-control" id="M" placeholder="Big Mass for gravitational parameter [kg]" onchange="calculateAll()">
+            <div class="hero-unit">
+                <p>
+                    Sun: 1.9885E30 kg
+                    Earth: 5.97237E24 kg
+                </p>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script>
@@ -33,6 +46,10 @@
             let a = document.getElementById("a").value;
             let c = document.getElementById("c").value;
             let e = document.getElementById("e").value;
+            let p = document.getElementById("p").value;
+            let µ = document.getElementById("µ").value;
+            let M = document.getElementById("M").value;
+            const G = 6.67430e-11;
 
             // e = c / a
             if (c != "" && a != "") {
@@ -47,8 +64,10 @@
                 a = c / e;
                 document.getElementById("c").value = c;
             }
-
-            
+            if (M != "") {
+                µ = G * M;
+                document.getElementById("µ").value = µ;
+            }
         }
     </script>
   </body>
