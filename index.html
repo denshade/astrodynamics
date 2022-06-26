@@ -40,16 +40,40 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="acceleration" class="form-label">acceleration</label>
-            <input type="text" class="form-control" id="accel0" placeholder=" [m/s^2]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="accel1" placeholder=" [m/s^2]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="accel2" placeholder=" [m/s^2]" onchange="calculateAll()">
+            <label for="acceleration" class="form-label">E</label>
+            <input type="text" class="form-control" id="E" placeholder=" [m²/sec²]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="acceleration" class="form-label">|speed|</label>
+            <input type="text" class="form-control" id="v" placeholder=" [m]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="acceleration" class="form-label">|position|</label>
+            <input type="text" class="form-control" id="r" placeholder=" [m]" onchange="calculateAll()">
         </div>
         <div class="mb-3">
             <label for="acceleration" class="form-label">position</label>
             <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
             <input type="text" class="form-control" id="pos1" placeholder=" [m]" onchange="calculateAll()">
             <input type="text" class="form-control" id="pos2" placeholder=" [m]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="v" class="form-label">speed</label>
+            <input type="text" class="form-control" id="v0" placeholder=" [m/sec]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="v1" placeholder=" [m/sec]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="v2" placeholder=" [m/sec]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="acceleration" class="form-label">acceleration</label>
+            <input type="text" class="form-control" id="accel0" placeholder=" [m/sec^2]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="accel1" placeholder=" [m/sec^2]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="accel2" placeholder=" [m/sec^2]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="h" class="form-label">angular momentum</label>
+            <input type="text" class="form-control" id="h0" placeholder=" [m²/sec]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="h1" placeholder=" [m²/sec]" onchange="calculateAll()">
+            <input type="text" class="form-control" id="h2" placeholder=" [m²/sec]" onchange="calculateAll()">
         </div>
 
     </div>
@@ -62,6 +86,18 @@
             let p = document.getElementById("p").value;
             let µ = document.getElementById("µ").value;
             let M = document.getElementById("M").value;
+
+            let pos0 = document.getElementById("pos0").value;
+            let pos1 = document.getElementById("pos1").value;
+            let pos2 = document.getElementById("pos2").value;
+
+            let v0 = document.getElementById("v0").value;
+            let v1 = document.getElementById("v1").value;
+            let v2 = document.getElementById("v2").value;
+
+            let v = document.getElementById("v").value;
+            let r = document.getElementById("r").value;
+
             const G = 6.67430e-11;
 
             // e = c / a
@@ -84,6 +120,27 @@
             if (a != "" && e != "") {
                 p = a * (1- e*2);
                 document.getElementById("p").value = p;
+            }
+
+            if (v0 != "" && v1 != "" &&v2 != "" && pos0 != "" && pos1 != "" && pos2 != "") {
+                h0 = pos1 * v2 - pos2 * v1;
+                h1 = pos2 * v0 - pos0 * v2;
+                h2 = pos0*v1-pos1*v0;
+                document.getElementById("h0").value = h0;
+                document.getElementById("h1").value = h1;
+                document.getElementById("h2").value = h2;
+            }
+            if (v0 != "" && v1 != "" &&v2 != "") {
+                v = Math.sqrt(v0 * v0 + v1 * v1 + v2 * v2);
+                document.getElementById("v").value = v;
+            }
+            if (pos0 != "" && pos1 != "" && pos2 != "") {
+                r = Math.sqrt(pos0 * pos0 + pos1 * pos1 + pos2 * pos2);
+                document.getElementById("r").value = r;
+            }
+            if (v != "" && µ != "" && r != "") {
+                E = v*v/2 - µ / r;
+                document.getElementById("E").value = E;
             }
         }
     </script>
