@@ -52,6 +52,14 @@
             <input type="text" class="form-control" id="r" placeholder=" [m]" onchange="calculateAll()">
         </div>
         <div class="mb-3">
+            <label for="acceleration" class="form-label">|h|</label>
+            <input type="text" class="form-control" id="h" placeholder=" [m]" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
+            <label for="acceleration" class="form-label">angle between v and position</label>
+            <input type="text" class="form-control" id="angle_r_v" placeholder="°" onchange="calculateAll()">
+        </div>
+        <div class="mb-3">
             <label for="acceleration" class="form-label">position</label>
             <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
             <input type="text" class="form-control" id="pos1" placeholder=" [m]" onchange="calculateAll()">
@@ -97,6 +105,7 @@
 
             let v = document.getElementById("v").value;
             let r = document.getElementById("r").value;
+            let angle_r_v = document.getElementById("angle_r_v").value;
 
             const G = 6.67430e-11;
 
@@ -141,6 +150,14 @@
             if (v != "" && µ != "" && r != "") {
                 E = v*v/2 - µ / r;
                 document.getElementById("E").value = E;
+            }
+            if (v != "" && r != "" && angle_r_v != "") {
+                h = r * v * Math.sin(angle_r_v);
+                document.getElementById("h").value = h;
+            }
+            if (h != "" && E != "" && µ != "") {
+                e = Math.sqrt(1 + 2*E*h*h/(µ*µ))
+                document.getElementById("e").value = e;
             }
         }
     </script>
