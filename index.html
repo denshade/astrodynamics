@@ -9,80 +9,92 @@
   <body>
     <div class="container">
         <img src="Ellipse-param.svg.png"/>
-        <div class="mb-3">
-            <label for="e" class="form-label">e</label>
-            <input type="text" class="form-control" id="e" placeholder="eccentricity" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="c" class="form-label">c</label>
-            <input type="text" class="form-control" id="c" placeholder="distance to the focus" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="a" class="form-label">a</label>
-            <input type="text" class="form-control" id="a" placeholder="semi-major axis" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="p" class="form-label">p</label>
-            <input type="text" class="form-control" id="p" placeholder="semi-latus rectum" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="µ" class="form-label">µ</label>
-            <input type="text" class="form-control" id="µ" placeholder="Standard gravitational parameter [m^3 s^−2]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="M" class="form-label">M</label>
-            <input type="text" class="form-control" id="M" placeholder="Big Mass for gravitational parameter [kg]" onchange="calculateAll()">
-            <div class="hero-unit">
-                <p>
-                    Sun: 1.9885E30 kg<BR/>
-                    Earth: 5.97237E24 kg
-                </p>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="e" class="form-label">e</label>
+                    <input type="text" class="form-control" id="e" placeholder="eccentricity" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="p" class="form-label">p</label>
+                    <input type="text" class="form-control" id="p" placeholder="semi-latus rectum" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="µ" class="form-label">µ</label>
+                    <input type="text" class="form-control" id="µ" placeholder="Standard gravitational parameter [m^3 s^−2]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="M" class="form-label">M</label>
+                    <input type="text" class="form-control" id="M" placeholder="Big Mass for gravitational parameter [kg]" onchange="calculateAll()">
+                    <div class="hero-unit">
+                        <p>
+                            Sun: 1.9885E30 kg<BR/>
+                            Earth: 5.97237E24 kg
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">angular momentum |h|</label>
+                    <input type="text" class="form-control" id="h" placeholder=" [m]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="v" class="form-label">speed</label>
+                    <input type="text" class="form-control" id="v0" placeholder=" [m/sec]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="v1" placeholder=" [m/sec]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="v2" placeholder=" [m/sec]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">acceleration</label>
+                    <input type="text" class="form-control" id="accel0" placeholder=" [m/sec^2]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="accel1" placeholder=" [m/sec^2]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="accel2" placeholder=" [m/sec^2]" onchange="calculateAll()">
+                </div>
             </div>
+            <div class="col">            
+                <div class="mb-3">
+                    <label for="c" class="form-label">c</label>
+                    <input type="text" class="form-control" id="c" placeholder="distance to the focus" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="a" class="form-label">a</label>
+                    <input type="text" class="form-control" id="a" placeholder="semi-major axis" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">E</label>
+                    <input type="text" class="form-control" id="E" placeholder=" [m²/sec²]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">|speed|</label>
+                    <input type="text" class="form-control" id="v" placeholder=" [m]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">|position|</label>
+                    <input type="text" class="form-control" id="r" placeholder=" [m]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">angle between v and position</label>
+                    <input type="text" class="form-control" id="angle_r_v" placeholder="rad" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="acceleration" class="form-label">position</label>
+                    <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="pos1" placeholder=" [m]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="pos2" placeholder=" [m]" onchange="calculateAll()">
+                </div>
+                <div class="mb-3">
+                    <label for="h" class="form-label">angular momentum (h)</label>
+                    <input type="text" class="form-control" id="h0" placeholder=" [m²/sec]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="h1" placeholder=" [m²/sec]" onchange="calculateAll()">
+                    <input type="text" class="form-control" id="h2" placeholder=" [m²/sec]" onchange="calculateAll()">
+                </div>
+            </div>
+            
         </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">E</label>
-            <input type="text" class="form-control" id="E" placeholder=" [m²/sec²]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">|speed|</label>
-            <input type="text" class="form-control" id="v" placeholder=" [m]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">|position|</label>
-            <input type="text" class="form-control" id="r" placeholder=" [m]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">|h|</label>
-            <input type="text" class="form-control" id="h" placeholder=" [m]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">angle between v and position</label>
-            <input type="text" class="form-control" id="angle_r_v" placeholder="rad" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">position</label>
-            <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="pos1" placeholder=" [m]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="pos2" placeholder=" [m]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="v" class="form-label">speed</label>
-            <input type="text" class="form-control" id="v0" placeholder=" [m/sec]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="v1" placeholder=" [m/sec]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="v2" placeholder=" [m/sec]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="acceleration" class="form-label">acceleration</label>
-            <input type="text" class="form-control" id="accel0" placeholder=" [m/sec^2]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="accel1" placeholder=" [m/sec^2]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="accel2" placeholder=" [m/sec^2]" onchange="calculateAll()">
-        </div>
-        <div class="mb-3">
-            <label for="h" class="form-label">angular momentum</label>
-            <input type="text" class="form-control" id="h0" placeholder=" [m²/sec]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="h1" placeholder=" [m²/sec]" onchange="calculateAll()">
-            <input type="text" class="form-control" id="h2" placeholder=" [m²/sec]" onchange="calculateAll()">
-        </div>
+
+
+
+
+
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -153,6 +165,10 @@
             }
             if (v != "" && r != "" && angle_r_v != "") {
                 h = r * v * Math.sin(angle_r_v);
+                document.getElementById("h").value = h;
+            }
+            if (h0 != "" && h1 != "" && h2 != "") {
+                h = Math.sqrt(h0 * h0 + h1*h1 + h2*h2);
                 document.getElementById("h").value = h;
             }
             if (h != "" && E != "" && µ != "") {
