@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Polar graph renderer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+        <div class="form-group">
+            <label for="textarea">Fill in your evaluation function below</label>
+            <textarea class="form-control" id="textarea" rows="10">
+                function func(theta) {
+                    //Your function here
+                    //                    return 2/(1+2*Math.cos(theta));
+                    return 1;
+                }  
+            </textarea>
+          </div>
+            
+        </textarea>
+                <button class="btn btn-success" onclick="draw()">Draw</button>
+            <canvas id="canvas" width="500px" height="500px"></canvas>
+            
+        </div>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script>
+        function draw() {
+            const canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            ctx.strokeStyle = "#000000";
+            [1,10,50,100,200].forEach(radius => 
+            {
+                ctx.beginPath();
+                ctx.arc(250, 250, radius, 0, 2 * Math.PI);
+                ctx.stroke();
+            });
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 500);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 250);
+            ctx.lineTo(500, 250);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(500, 0);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(250, 0);
+            ctx.lineTo(250, 500);
+            ctx.stroke();
+
+            const textarea = document.getElementById("textarea").value;
+
+            eval(textarea);
+            for (theta = 0; theta <= Math.PI*2; theta += 0.01) {
+                let r = func(theta);
+                let x = Math.cos(theta) * r;
+                let y = Math.sin(theta) * r;
+                ctx.beginPath();
+                ctx.arc(x + 250, y + 250, 0.5, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#FF0000';
+                ctx.stroke();
+            }
+
+        }
+    </script>
+  </body>
+</html>
