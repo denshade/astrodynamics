@@ -116,6 +116,8 @@
             let a = document.getElementById("a").value;
             let c = document.getElementById("c").value;
             let e = document.getElementById("e").value;
+            let h = document.getElementById("h").value;
+
             let p = document.getElementById("p").value;
             let µ = document.getElementById("µ").value;
             let M = document.getElementById("M").value;
@@ -204,6 +206,18 @@
             if (apogee !== "" && µ !== "") {
                 period = 2*Math.PI * (parseInt(apogee)) / Math.sqrt(µ);
                 document.getElementById("period").value = period;
+            }
+            if (e !== "" && a !== "") {
+                perigee = a * (1-e);
+                document.getElementById("perigee").value = perigee;
+            }
+            if (e !== "" && a !== "") {
+                apogee = a * (1+e);
+                document.getElementById("apogee").value = apogee;
+            }
+            if (µ !== "" && a !== "") {
+                E = -µ / (2*a);
+                document.getElementById("E").value = E;
             }
         }
     </script>
