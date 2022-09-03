@@ -107,6 +107,28 @@ function calculateAll() {
     }
 }
 
+
+function addVectorElement(colElement, field_definition) {
+    var column = document.getElementById(colElement);
+    var divEl = document.createElement("div");
+    divEl.classList.add("mb-3");
+    var labelEl = document.createElement("label");
+    labelEl.setAttribute("for",field_definition.id );
+    labelEl.classList.add("form-label");
+    labelEl.innerText = field_definition.label;
+    divEl.appendChild(labelEl);
+    for (var i = 0; i < 3; i++) {
+        var inputEl = document.createElement("input");
+        inputEl.setAttribute("type", "text");
+        inputEl.setAttribute("id", field_definition.id+""+i);
+        inputEl.setAttribute("placeholder", field_definition.placeholder);
+        inputEl.addEventListener('change', calculateAll);
+        inputEl.classList.add("form-control");
+        divEl.appendChild(inputEl);
+    }
+    column.appendChild(divEl);
+}
+
 function addElement(colElement, field_definition) {
     var column = document.getElementById(colElement);
     var divEl = document.createElement("div");

@@ -8,50 +8,17 @@
 </head>
   <body>
     <div class="container">
+        <div class="hero-unit">
+            <p>Example Masses<BR/>
+                Sun: 1.9885E30 kg<BR/>
+                Earth: 5.97237E24 kg
+            </p>
+        </div>
         <img src="Ellipse-param.svg.png"/>
         <div class="row">
-            <div id="col1" class="col">
-                <div class="hero-unit">
-                    <p>Example Masses<BR/>
-                        Sun: 1.9885E30 kg<BR/>
-                        Earth: 5.97237E24 kg
-                    </p>
-                </div>
-                <div class="mb-3">
-                    <label for="v" class="form-label">speed</label>
-                    <input type="text" class="form-control" id="v0" placeholder=" [m/sec]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="v1" placeholder=" [m/sec]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="v2" placeholder=" [m/sec]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">acceleration</label>
-                    <input type="text" class="form-control" id="accel0" placeholder=" [m/sec^2]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="accel1" placeholder=" [m/sec^2]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="accel2" placeholder=" [m/sec^2]" onchange="calculateAll()">
-                </div>
-            </div>
-            <div id="col2" class="col">
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">position</label>
-                    <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="pos1" placeholder=" [m]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="pos2" placeholder=" [m]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="h" class="form-label">angular momentum (h)</label>
-                    <input type="text" class="form-control" id="h0" placeholder=" [m²/sec]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="h1" placeholder=" [m²/sec]" onchange="calculateAll()">
-                    <input type="text" class="form-control" id="h2" placeholder=" [m²/sec]" onchange="calculateAll()">
-                </div>
-            </div>
-            
+            <div id="col1" class="col"></div>
+            <div id="col2" class="col"></div>     
         </div>
-
-
-
-
-
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="calculate.js"></script>
@@ -75,6 +42,17 @@
             {id:"r", placeholder: "[m]", label: "|position|"},
             {id:"angle_r_v", placeholder: "rad", label: "angle between v and position"}
     ].forEach( i => addElement("col2", i));
+    
+    [
+            {id:"pos", placeholder: "[m]", label: "position"},
+            {id:"h", placeholder: "[m²/sec]", label: "angular momentum (h)"},
+    ].forEach( i => addVectorElement("col2", i));
+
+    [
+            {id:"v", placeholder: "[m/sec]", label: "speed"},
+            {id:"accel", placeholder: "[m/sec^2]", label: "acceleration"},
+    ].forEach( i => addVectorElement("col1", i));
+
     </script>
   </body>
 </html>
