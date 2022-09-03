@@ -5,51 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ellipse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  </head>
+</head>
   <body>
     <div class="container">
         <img src="Ellipse-param.svg.png"/>
         <div class="row">
-            <div class="col">
-                <div class="mb-3">
-                    <label for="e" class="form-label">e</label>
-                    <input type="text" class="form-control" id="e" placeholder="eccentricity" onchange="calculateAll()">
+            <div id="col1" class="col">
+                <div class="hero-unit">
+                    <p>Example Masses<BR/>
+                        Sun: 1.9885E30 kg<BR/>
+                        Earth: 5.97237E24 kg
+                    </p>
                 </div>
-                <div class="mb-3">
-                    <label for="p" class="form-label">p</label>
-                    <input type="text" class="form-control" id="p" placeholder="semi-latus rectum" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="µ" class="form-label">µ</label>
-                    <input type="text" class="form-control" id="µ" placeholder="Standard gravitational parameter [m^3 s^−2]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="M" class="form-label">M</label>
-                    <input type="text" class="form-control" id="M" placeholder="Big Mass for gravitational parameter [kg]" onchange="calculateAll()">
-                    <div class="hero-unit">
-                        <p>
-                            Sun: 1.9885E30 kg<BR/>
-                            Earth: 5.97237E24 kg
-                        </p>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">angular momentum |h|</label>
-                    <input type="text" class="form-control" id="h" placeholder=" [m]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">r apogee</label>
-                    <input type="text" class="form-control" id="apogee" placeholder=" [m]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">r perigee</label>
-                    <input type="text" class="form-control" id="perigee" placeholder=" [m]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">period of the orbit</label>
-                    <input type="text" class="form-control" id="period" placeholder="period of the orbit" onchange="calculateAll()">
-                </div>
-
                 <div class="mb-3">
                     <label for="v" class="form-label">speed</label>
                     <input type="text" class="form-control" id="v0" placeholder=" [m/sec]" onchange="calculateAll()">
@@ -63,7 +30,7 @@
                     <input type="text" class="form-control" id="accel2" placeholder=" [m/sec^2]" onchange="calculateAll()">
                 </div>
             </div>
-            <div class="col">            
+            <div id="col2" class="col">            
                 <div class="mb-3">
                     <label for="c" class="form-label">c</label>
                     <input type="text" class="form-control" id="c" placeholder="distance to the focus" onchange="calculateAll()">
@@ -85,7 +52,7 @@
                     <input type="text" class="form-control" id="r" placeholder=" [m]" onchange="calculateAll()">
                 </div>
                 <div class="mb-3">
-                    <label for="acceleration" class="form-label">angle between v and position</label>
+                    <label for="angle_r_v" class="form-label">angle between v and position</label>
                     <input type="text" class="form-control" id="angle_r_v" placeholder="rad" onchange="calculateAll()">
                 </div>
                 <div class="mb-3">
@@ -111,115 +78,19 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="calculate.js"></script>
     <script>
-        function calculateAll() {
-            let a = document.getElementById("a").value;
-            let c = document.getElementById("c").value;
-            let e = document.getElementById("e").value;
-            let h = document.getElementById("h").value;
+        [
+            {id:"e", placeholder: "eccentricity", label: "eccentricity"},
+            {id:"p", placeholder: "semi-latus rectum", label: "semi-latus rectum"},
+            {id:"µ", placeholder: "Standard gravitational parameter [m^3 s^−2]", label: "µ"},
+            {id:"h", placeholder: "[m]", label: "angular momentum |h|"},
+            {id:"apogee", placeholder: "[m]", label: "r apogee"},
+            {id:"perigee", placeholder: "[m]", label: "r perigee"},
+            {id:"period", placeholder: "period of the orbit", label: "period of the orbit"},
+            {id:"M", placeholder: "Big Mass for gravitational parameter [kg]", label: "Mass"}
+    ].forEach( i => addElement("col1", i))
 
-            let p = document.getElementById("p").value;
-            let µ = document.getElementById("µ").value;
-            let M = document.getElementById("M").value;
-
-            let pos0 = document.getElementById("pos0").value;
-            let pos1 = document.getElementById("pos1").value;
-            let pos2 = document.getElementById("pos2").value;
-
-            let v0 = document.getElementById("v0").value;
-            let v1 = document.getElementById("v1").value;
-            let v2 = document.getElementById("v2").value;
-
-            let h0 = document.getElementById("h0").value;
-            let h1 = document.getElementById("h1").value;
-            let h2 = document.getElementById("h2").value;
-
-            let v = document.getElementById("v").value;
-            let r = document.getElementById("r").value;
-
-            
-            let apogee = document.getElementById("apogee").value;
-            let perigee = document.getElementById("perigee").value;
-            let angle_r_v = document.getElementById("angle_r_v").value;
-
-
-            const G = 6.67430e-11;
-
-            // e = c / a
-            if (c !== "" && a !== "") {
-                e = c / a;
-                document.getElementById("e").value = e;
-            }
-            if (e !== "" && a !== "") {
-                c = e * a;
-                document.getElementById("c").value = c;
-            }
-            if (c !== "" && e !== "") {
-                a = c / e;
-                document.getElementById("c").value = c;
-            }
-            if (M !== "") {
-                µ = G * M;
-                document.getElementById("µ").value = µ;
-            }
-            if (a !== "" && e !== "") {
-                p = a * (1- e*2);
-                document.getElementById("p").value = p;
-            }
-
-            if (v0 !== "" && v1 !== "" &&v2 !== "" && pos0 !== "" && pos1 !== "" && pos2 !== "") {
-                h0 = pos1 * v2 - pos2 * v1;
-                h1 = pos2 * v0 - pos0 * v2;
-                h2 = pos0*v1-pos1*v0;
-                document.getElementById("h0").value = h0;
-                document.getElementById("h1").value = h1;
-                document.getElementById("h2").value = h2;
-            }
-            if (v0 !== "" && v1 !== "" &&v2 !== "") {
-                v = Math.sqrt(v0 * v0 + v1 * v1 + v2 * v2);
-                document.getElementById("v").value = v;
-            }
-            if (pos0 !== "" && pos1 !== "" && pos2 !== "") {
-                r = Math.sqrt(pos0 * pos0 + pos1 * pos1 + pos2 * pos2);
-                document.getElementById("r").value = r;
-            }
-            if (v !== "" && µ !== "" && r !== "") {
-                E = v*v/2 - µ / r;
-                document.getElementById("E").value = E;
-            }
-            if (v !== "" && r !== "" && angle_r_v !== "") {
-                h = r * v * Math.sin(angle_r_v);
-                document.getElementById("h").value = h;
-            }
-            if (h0 !== "" && h1 !== "" && h2 !== "") {
-                h = Math.sqrt(h0 * h0 + h1*h1 + h2*h2);
-                document.getElementById("h").value = h;
-            }
-            if (h !== "" && E !== "" && µ !== "") {
-                e = Math.sqrt(1 + 2*E*h*h/(µ*µ))
-                document.getElementById("e").value = e;
-            }
-            if (apogee !== "" && perigee !== "") {
-                a = (parseInt(apogee) + parseInt(perigee)) / 2;
-                document.getElementById("a").value = a;
-            }
-            if (apogee !== "" && µ !== "") {
-                period = 2*Math.PI * (parseInt(apogee)) / Math.sqrt(µ);
-                document.getElementById("period").value = period;
-            }
-            if (e !== "" && a !== "") {
-                perigee = a * (1-e);
-                document.getElementById("perigee").value = perigee;
-            }
-            if (e !== "" && a !== "") {
-                apogee = a * (1+e);
-                document.getElementById("apogee").value = apogee;
-            }
-            if (µ !== "" && a !== "") {
-                E = -µ / (2*a);
-                document.getElementById("E").value = E;
-            }
-        }
     </script>
   </body>
 </html>
