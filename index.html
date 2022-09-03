@@ -30,31 +30,7 @@
                     <input type="text" class="form-control" id="accel2" placeholder=" [m/sec^2]" onchange="calculateAll()">
                 </div>
             </div>
-            <div id="col2" class="col">            
-                <div class="mb-3">
-                    <label for="c" class="form-label">c</label>
-                    <input type="text" class="form-control" id="c" placeholder="distance to the focus" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="a" class="form-label">a</label>
-                    <input type="text" class="form-control" id="a" placeholder="semi-major axis" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">E</label>
-                    <input type="text" class="form-control" id="E" placeholder=" [m²/sec²]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">|speed|</label>
-                    <input type="text" class="form-control" id="v" placeholder=" [m]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="acceleration" class="form-label">|position|</label>
-                    <input type="text" class="form-control" id="r" placeholder=" [m]" onchange="calculateAll()">
-                </div>
-                <div class="mb-3">
-                    <label for="angle_r_v" class="form-label">angle between v and position</label>
-                    <input type="text" class="form-control" id="angle_r_v" placeholder="rad" onchange="calculateAll()">
-                </div>
+            <div id="col2" class="col">
                 <div class="mb-3">
                     <label for="acceleration" class="form-label">position</label>
                     <input type="text" class="form-control" id="pos0" placeholder=" [m]" onchange="calculateAll()">
@@ -89,8 +65,16 @@
             {id:"perigee", placeholder: "[m]", label: "r perigee"},
             {id:"period", placeholder: "period of the orbit", label: "period of the orbit"},
             {id:"M", placeholder: "Big Mass for gravitational parameter [kg]", label: "Mass"}
-    ].forEach( i => addElement("col1", i))
+    ].forEach( i => addElement("col1", i));
 
+    [
+            {id:"c", placeholder: "distance to the focus", label: "c"},
+            {id:"a", placeholder: "semi-major axis", label: "semi-major axis a"},
+            {id:"E", placeholder: "[m²/sec²]", label: "energy E"},
+            {id:"v", placeholder: "[m/sec]", label: "|speed|"},
+            {id:"r", placeholder: "[m]", label: "|position|"},
+            {id:"angle_r_v", placeholder: "rad", label: "angle between v and position"}
+    ].forEach( i => addElement("col2", i));
     </script>
   </body>
 </html>
