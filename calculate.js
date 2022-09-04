@@ -1,4 +1,7 @@
-function calculateAll() {
+const hasAllElements= ()  => {
+    
+}
+function calculateAll(field_definitions) {
     let a = document.getElementById("a").value;
     let c = document.getElementById("c").value;
     let e = document.getElementById("e").value;
@@ -30,6 +33,7 @@ function calculateAll() {
 
 
     const G = 6.67430e-11;
+
 
     // e = c / a
     if (c !== "" && a !== "") {
@@ -139,15 +143,11 @@ function addElement(colElement, field_definition) {
     labelEl.classList.add("form-label");
     labelEl.innerText = field_definition.label;
 
-    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("type", "number");
     inputEl.setAttribute("id", field_definition.id);
     inputEl.setAttribute("placeholder", field_definition.placeholder);
     inputEl.addEventListener('change', calculateAll);
     inputEl.classList.add("form-control");
-/*    <div class="mb-3">
-    <label for="e" class="form-label">e</label>
-    <input type="text" class="form-control" id="e" placeholder="eccentricity" onchange="calculateAll()">
-    </div>*/
     divEl.appendChild(labelEl);
     divEl.appendChild(inputEl);
     column.appendChild(divEl);
