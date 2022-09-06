@@ -23,7 +23,7 @@ function calculateAll(field_definitions) {
     let h1 = document.getElementById("h1").value;
     let h2 = document.getElementById("h2").value;
 
-    let v = document.getElementById("v").value;
+    let v_old = document.getElementById("v").value;
     let r = document.getElementById("r").value;
 
     
@@ -31,7 +31,13 @@ function calculateAll(field_definitions) {
     let perigee = document.getElementById("perigee").value;
     let angle_r_v = document.getElementById("angle_r_v").value;
 
-
+    const allElements = document.getElementsByTagName('input');
+    var $ = {}
+    var v = {}
+    for (const element of allElements) {
+        $[element.id] = element;
+        v[element.id] = element.value;
+      }
     const G = 6.67430e-11;
 
 
@@ -66,19 +72,19 @@ function calculateAll(field_definitions) {
         document.getElementById("h2").value = h2;
     }
     if (v0 !== "" && v1 !== "" &&v2 !== "") {
-        v = Math.sqrt(v0 * v0 + v1 * v1 + v2 * v2);
-        document.getElementById("v").value = v;
+        v_old = Math.sqrt(v0 * v0 + v1 * v1 + v2 * v2);
+        document.getElementById("v").value = v_old;
     }
     if (pos0 !== "" && pos1 !== "" && pos2 !== "") {
         r = Math.sqrt(pos0 * pos0 + pos1 * pos1 + pos2 * pos2);
         document.getElementById("r").value = r;
     }
-    if (v !== "" && µ !== "" && r !== "") {
-        E = v*v/2 - µ / r;
+    if (v_old !== "" && µ !== "" && r !== "") {
+        E = v_old*v_old/2 - µ / r;
         document.getElementById("E").value = E;
     }
-    if (v !== "" && r !== "" && angle_r_v !== "") {
-        h = r * v * Math.sin(angle_r_v);
+    if (v_old !== "" && r !== "" && angle_r_v !== "") {
+        h = r * v_old * Math.sin(angle_r_v);
         document.getElementById("h").value = h;
     }
     if (h0 !== "" && h1 !== "" && h2 !== "") {
