@@ -120,12 +120,9 @@ function calculateAll(field_definitions) {
 
 function addVectorElement(colElement, field_definition) {
     var column = document.getElementById(colElement);
+    var labelEl = create_label_from_definition(field_definition);
     var divEl = document.createElement("div");
     divEl.classList.add("mb-3");
-    var labelEl = document.createElement("label");
-    labelEl.setAttribute("for",field_definition.id );
-    labelEl.classList.add("form-label");
-    labelEl.innerText = field_definition.label;
     divEl.appendChild(labelEl);
     for (var i = 0; i < 3; i++) {
         var inputEl = document.createElement("input");
@@ -138,6 +135,7 @@ function addVectorElement(colElement, field_definition) {
     }
     column.appendChild(divEl);
 }
+
 
 function addElement(colElement, field_definition) {
     var column = document.getElementById(colElement);
@@ -157,4 +155,13 @@ function addElement(colElement, field_definition) {
     divEl.appendChild(labelEl);
     divEl.appendChild(inputEl);
     column.appendChild(divEl);
+}
+
+//Technical
+function create_label_from_definition(field_definition) {
+    var labelEl = document.createElement("label");
+    labelEl.setAttribute("for", field_definition.id);
+    labelEl.classList.add("form-label");
+    labelEl.innerText = field_definition.label;
+    return labelEl;
 }
