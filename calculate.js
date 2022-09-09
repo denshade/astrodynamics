@@ -165,3 +165,7 @@ function create_label_from_definition(field_definition) {
     labelEl.innerText = field_definition.label;
     return labelEl;
 }
+
+
+
+module.exports = calculateAllWithFields;
