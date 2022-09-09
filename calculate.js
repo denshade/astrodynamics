@@ -1,6 +1,16 @@
 const hasAllElements= ()  => {
-    
+    return [];
 }
+    
+function calculateAllWithFields(field_definitions,$,v)
+{
+
+    if (v.c !== "" && v.a !== "") {
+        $.e.value = v.c / v.a;
+    }
+
+}
+
 function calculateAll(field_definitions) {
     let a = document.getElementById("a").value;
     let c = document.getElementById("c").value;
