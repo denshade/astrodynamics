@@ -2,13 +2,29 @@ const hasAllElements= ()  => {
     return [];
 }
     
-function calculateAllWithFields(field_definitions,$,v)
+function calculateAllWithFields(field_definitions,elements,values)
 {
+    field_definitions.forEach(field_definition => {
+        field_definition.formulas.forEach(formula => {
+            const filled_formula = replace_variables_in_formula(formula, values);
+            if (!has_unfilled_variables(filled_formula)){
+                elements[field_definition.id].value = eval(filled_formula);
+            }    
+        })
+    })
 
-    if (v.c !== "" && v.a !== "") {
-        $.e.value = v.c / v.a;
+}
+
+const replace_variables_in_formula = (formula, values) => {
+    let processedFormula = formula;
+    for (const key in values) {
+        processedFormula = processedFormula.replace(" "+key+" ", values[key]);
     }
+    return processedFormula;
+}
 
+function has_unfilled_variables(filled_formula) {
+    return filled_formula.includes(" ");
 }
 
 function calculateAll(field_definitions) {
@@ -141,14 +157,16 @@ function addVectorElement(colElement, field_definition) {
 
 function addElement(colElement, field_definition) {
     var column = document.getElementById(colElement);
-    var divEl = createDiv();
-    var inputEl = createCell(field_definition, "");
-    divEl.appendChild(create_label_from_definition(field_definition));
-    divEl.appendChild(inputEl);
-    column.appendChild(divEl);
+    column.appendChild(divisionWith(create_label_from_definition(field_definition), createCell(field_definition, "")));
 }
 
-//Technical
+//Cryptical
+
+const divisionWith = (...elements) => {
+    var division = createDiv();
+    elements.forEach(e => division.appendChild(e));
+    return division;
+}
 function create_label_from_definition(field_definition) {
     var labelEl = document.createElement("label");
     labelEl.setAttribute("for", field_definition.id);
@@ -174,4 +192,4 @@ function createDiv() {
 }
 
 
-module.exports = calculateAllWithFields;
+module.exports = [calculateAllWithFields, replace_variables_in_formula];

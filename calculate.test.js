@@ -1,8 +1,12 @@
-const calculateAllWithFields = require('./calculate');
+const [calculateAllWithFields, formula_has_solution] = require('./calculate');
 
-test('t', () => {
-    var eObject = {};
-    calculateAllWithFields([ {id:"c", placeholder: "distance to the focus", label: "c"}],{e:eObject}, {c:1, a:2},
+test('calculateAllWithFields', () => {
+    var cObject = {};
+    calculateAllWithFields([ {id:"c", placeholder: "distance to the focus", label: "c", formulas:[" e * a "]}],{c:cObject}, {e:1, a:2},
     );
-    expect(eObject.value).toBe(0.5);
+    expect(cObject.value).toBe(1*2);
+})
+
+test('formula_has_solution', () => {
+    expect(formula_has_solution(" e * a ", {e:1, a:2})).toBe("1*2");
 })
