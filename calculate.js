@@ -130,18 +130,10 @@ function calculateAll(field_definitions) {
 
 function addVectorElement(colElement, field_definition) {
     var column = document.getElementById(colElement);
-    var labelEl = create_label_from_definition(field_definition);
-    var divEl = document.createElement("div");
-    divEl.classList.add("mb-3");
-    divEl.appendChild(labelEl);
+    var divEl = createDiv();
+    divEl.appendChild(create_label_from_definition(field_definition));
     for (var i = 0; i < 3; i++) {
-        var inputEl = document.createElement("input");
-        inputEl.setAttribute("type", "text");
-        inputEl.setAttribute("id", field_definition.id+""+i);
-        inputEl.setAttribute("placeholder", field_definition.placeholder);
-        inputEl.addEventListener('change', calculateAll);
-        inputEl.classList.add("form-control");
-        divEl.appendChild(inputEl);
+        divEl.appendChild(createCell(field_definition, i));
     }
     column.appendChild(divEl);
 }
@@ -149,20 +141,9 @@ function addVectorElement(colElement, field_definition) {
 
 function addElement(colElement, field_definition) {
     var column = document.getElementById(colElement);
-    var divEl = document.createElement("div");
-    divEl.classList.add("mb-3");
-    var labelEl = document.createElement("label");
-    var inputEl = document.createElement("input");
-    labelEl.setAttribute("for",field_definition.id );
-    labelEl.classList.add("form-label");
-    labelEl.innerText = field_definition.label;
-
-    inputEl.setAttribute("type", "number");
-    inputEl.setAttribute("id", field_definition.id);
-    inputEl.setAttribute("placeholder", field_definition.placeholder);
-    inputEl.addEventListener('change', calculateAll);
-    inputEl.classList.add("form-control");
-    divEl.appendChild(labelEl);
+    var divEl = createDiv();
+    var inputEl = createCell(field_definition, "");
+    divEl.appendChild(create_label_from_definition(field_definition));
     divEl.appendChild(inputEl);
     column.appendChild(divEl);
 }
@@ -176,6 +157,21 @@ function create_label_from_definition(field_definition) {
     return labelEl;
 }
 
+function createCell(field_definition, i) {
+    var inputEl = document.createElement("input");
+    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("id", field_definition.id + "" + i);
+    inputEl.setAttribute("placeholder", field_definition.placeholder);
+    inputEl.addEventListener('change', calculateAll);
+    inputEl.classList.add("form-control");
+    return inputEl;
+}
+
+function createDiv() {
+    var divEl = document.createElement("div");
+    divEl.classList.add("mb-3");
+    return divEl;
+}
 
 
 module.exports = calculateAllWithFields;
