@@ -67,26 +67,6 @@ function calculateAll(field_definitions) {
         $[element.id] = element;
         v[element.id] = element.value;
       }
-    const G = 6.67430e-11;
-
-
-    // e = c / a
-    if (e !== "" && a !== "") {
-        c = e * a;
-        document.getElementById("c").value = c;
-    }
-    if (c !== "" && e !== "") {
-        a = c / e;
-        document.getElementById("c").value = c;
-    }
-    if (M !== "") {
-        µ = G * M;
-        document.getElementById("µ").value = µ;
-    }
-    if (a !== "" && e !== "") {
-        p = a * (1- e*2);
-        document.getElementById("p").value = p;
-    }
 
     if (v0 !== "" && v1 !== "" &&v2 !== "" && pos0 !== "" && pos1 !== "" && pos2 !== "") {
         h0 = pos1 * v2 - pos2 * v1;
@@ -103,14 +83,6 @@ function calculateAll(field_definitions) {
     if (pos0 !== "" && pos1 !== "" && pos2 !== "") {
         r = Math.sqrt(pos0 * pos0 + pos1 * pos1 + pos2 * pos2);
         document.getElementById("r").value = r;
-    }
-    if (v_old !== "" && µ !== "" && r !== "") {
-        E = v_old*v_old/2 - µ / r;
-        document.getElementById("E").value = E;
-    }
-    if (v_old !== "" && r !== "" && angle_r_v !== "") {
-        h = r * v_old * Math.sin(angle_r_v);
-        document.getElementById("h").value = h;
     }
     if (h0 !== "" && h1 !== "" && h2 !== "") {
         h = Math.sqrt(h0 * h0 + h1*h1 + h2*h2);

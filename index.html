@@ -25,8 +25,8 @@
     <script>
         const col1Elements = [
             {id:"e", placeholder: "eccentricity", label: "eccentricity", formulas:[" c / a ", "Math.sqrt(1+2* E * h * h /( µ * µ ))"]},
-            {id:"p", placeholder: "semi-latus rectum", label: "semi-latus rectum"},
-            {id:"µ", placeholder: "Standard gravitational parameter [m^3 s^−2]", label: "µ"},
+            {id:"p", placeholder: "semi-latus rectum", label: "semi-latus rectum", formulas: [" a *(1- e *2)"]},
+            {id:"µ", placeholder: "Standard gravitational parameter [m^3 s^−2]", label: "µ", formulas: ["6.67430e-11* M "]},
             {id:"h", placeholder: "[m]", label: "angular momentum |h|", formulas: [" r * v *Math.sin( angle_r_v )"]},
             {id:"apogee", placeholder: "[m]", label: "r apogee", formulas: [" a *(1+ e )"]},
             {id:"perigee", placeholder: "[m]", label: "r perigee", formulas: [" a *(1- e )"]},
@@ -35,10 +35,10 @@
     ];
 
     const col2Elements = [
-            {id:"c", placeholder: "distance to the focus", label: "c"},
-            {id:"a", placeholder: "semi-major axis", label: "semi-major axis a", formulas: ["( apogee + perigee )/2"]},
-            {id:"E", placeholder: "[m²/sec²]", label: "energy E", formulas: ["- µ /(2* a )"]},
-            {id:"v", placeholder: "[m/sec]", label: "|speed|"},
+            {id:"c", placeholder: "distance to the focus", label: "c", formulas: [" e * a "]},
+            {id:"a", placeholder: "semi-major axis", label: "semi-major axis a", formulas: ["( apogee + perigee )/2", " c / e "]},
+            {id:"E", placeholder: "[m²/sec²]", label: "energy E", formulas: ["- µ /(2* a )", " v * v /2- µ / r "]},
+            {id:"v", placeholder: "[m/sec]", label: "|speed|", formulas:["Math.sqrt( v0 * v0 + v1 * v1 + v2 * v2 )"]},
             {id:"r", placeholder: "[m]", label: "|position|"},
             {id:"angle_r_v", placeholder: "rad", label: "angle between v and position"}
     ];
