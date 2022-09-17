@@ -23,35 +23,40 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="calculate.js"></script>
     <script>
-        [
-            {id:"e", placeholder: "eccentricity", label: "eccentricity", formula:" c / a "},
+        const col1Elements = [
+            {id:"e", placeholder: "eccentricity", label: "eccentricity", formulas:[" c / a "]},
             {id:"p", placeholder: "semi-latus rectum", label: "semi-latus rectum"},
             {id:"µ", placeholder: "Standard gravitational parameter [m^3 s^−2]", label: "µ"},
             {id:"h", placeholder: "[m]", label: "angular momentum |h|"},
             {id:"apogee", placeholder: "[m]", label: "r apogee"},
-            {id:"perigee", placeholder: "[m]", label: "r perigee"},
+            {id:"perigee", placeholder: "[m]", label: "r perigee", formulas: [" a *(1- e )"]},
             {id:"period", placeholder: "period of the orbit", label: "period of the orbit"},
             {id:"M", placeholder: "Big Mass for gravitational parameter [kg]", label: "Mass"}
-    ].forEach( i => addElement("col1", i));
+    ];
 
-    [
+    const col2Elements = [
             {id:"c", placeholder: "distance to the focus", label: "c"},
             {id:"a", placeholder: "semi-major axis", label: "semi-major axis a"},
             {id:"E", placeholder: "[m²/sec²]", label: "energy E"},
             {id:"v", placeholder: "[m/sec]", label: "|speed|"},
             {id:"r", placeholder: "[m]", label: "|position|"},
             {id:"angle_r_v", placeholder: "rad", label: "angle between v and position"}
-    ].forEach( i => addElement("col2", i));
+    ];
     
-    [
+    const col2Vect = [
             {id:"pos", placeholder: "[m]", label: "position"},
             {id:"h", placeholder: "[m²/sec]", label: "angular momentum (h)"},
-    ].forEach( i => addVectorElement("col2", i));
+    ];
 
-    [
+    const col1Vect = [
             {id:"v", placeholder: "[m/sec]", label: "speed"},
             {id:"accel", placeholder: "[m/sec^2]", label: "acceleration"},
-    ].forEach( i => addVectorElement("col1", i));
+    ];
+    const all_elements = [...col1Elements, ...col2Elements, ...col1Vect, ...col2Vect];
+    col1Elements.forEach( i => addElement("col1", i, all_elements));
+    col2Elements.forEach( i => addElement("col2", i,all_elements));
+    col1Vect.forEach( i => addVectorElement("col1", i,all_elements));
+    col2Vect.forEach( i => addVectorElement("col2", i,all_elements));
 
     </script>
   </body>

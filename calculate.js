@@ -5,12 +5,14 @@ const hasAllElements= ()  => {
 function calculateAllWithFields(field_definitions,elements,values)
 {
     field_definitions.forEach(field_definition => {
-        field_definition.formulas.forEach(formula => {
-            const filled_formula = replace_variables_in_formula(formula, values);
-            if (!has_unfilled_variables(filled_formula)){
-                elements[field_definition.id].value = eval(filled_formula);
-            }    
-        })
+        if (Array.isArray(field_definition.formulas)) {
+            field_definition.formulas.forEach(formula => {
+                const filled_formula = replace_variables_in_formula(formula, values);
+                if (!has_unfilled_variables(filled_formula)){
+                    elements[field_definition.id].value = eval(filled_formula);
+                }    
+            })    
+        }
     })
 
 }
@@ -18,6 +20,7 @@ function calculateAllWithFields(field_definitions,elements,values)
 const replace_variables_in_formula = (formula, values) => {
     let processedFormula = formula;
     for (const key in values) {
+        if (values[key] == "") continue;
         processedFormula = processedFormula.replace(" "+key+" ", values[key]);
     }
     return processedFormula;
@@ -144,20 +147,20 @@ function calculateAll(field_definitions) {
 }
 
 
-function addVectorElement(colElement, field_definition) {
+function addVectorElement(colElement, field_definition,field_definitions) {
     var column = document.getElementById(colElement);
     var divEl = createDiv();
     divEl.appendChild(create_label_from_definition(field_definition));
     for (var i = 0; i < 3; i++) {
-        divEl.appendChild(createCell(field_definition, i));
+        divEl.appendChild(createCell(field_definition, i,field_definitions));
     }
     column.appendChild(divEl);
 }
 
 
-function addElement(colElement, field_definition) {
+function addElement(colElement, field_definition, field_definitions) {
     var column = document.getElementById(colElement);
-    column.appendChild(divisionWith(create_label_from_definition(field_definition), createCell(field_definition, "")));
+    column.appendChild(divisionWith(create_label_from_definition(field_definition), createCell(field_definition, "", field_definitions)));
 }
 
 //Cryptical
@@ -175,15 +178,29 @@ function create_label_from_definition(field_definition) {
     return labelEl;
 }
 
-function createCell(field_definition, i) {
+function createCell(field_definition, i, field_definitions) {
     var inputEl = document.createElement("input");
     inputEl.setAttribute("type", "text");
     inputEl.setAttribute("id", field_definition.id + "" + i);
     inputEl.setAttribute("placeholder", field_definition.placeholder);
-    inputEl.addEventListener('change', calculateAll);
+    inputEl.addEventListener('change', curry(field_definitions));
     inputEl.classList.add("form-control");
     return inputEl;
 }
+
+function curry(field_definitions) { // curry(f) does the currying transform
+    return function(b) {
+
+        const allElements = document.getElementsByTagName('input');
+        var $ = {}
+        var v = {}
+        for (const element of allElements) {
+            $[element.id] = element;
+            v[element.id] = element.value;
+          }
+        return calculateAllWithFields(field_definitions, $,v);
+      };    
+  }
 
 function createDiv() {
     var divEl = document.createElement("div");
