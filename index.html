@@ -27,7 +27,7 @@
             {id:"e", placeholder: "eccentricity", label: "eccentricity", formulas:[" c / a ", "Math.sqrt(1+2* E * h * h /( µ * µ ))"]},
             {id:"p", placeholder: "semi-latus rectum", label: "semi-latus rectum"},
             {id:"µ", placeholder: "Standard gravitational parameter [m^3 s^−2]", label: "µ"},
-            {id:"h", placeholder: "[m]", label: "angular momentum |h|"},
+            {id:"h", placeholder: "[m]", label: "angular momentum |h|", formulas: [" r * v *Math.sin( angle_r_v )"]},
             {id:"apogee", placeholder: "[m]", label: "r apogee", formulas: [" a *(1+ e )"]},
             {id:"perigee", placeholder: "[m]", label: "r perigee", formulas: [" a *(1- e )"]},
             {id:"period", placeholder: "period of the orbit", label: "period of the orbit", formulas: ["2*Math.PI*( apogee /Math.sqrt( µ ))"]},

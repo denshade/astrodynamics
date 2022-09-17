@@ -116,10 +116,6 @@ function calculateAll(field_definitions) {
         h = Math.sqrt(h0 * h0 + h1*h1 + h2*h2);
         document.getElementById("h").value = h;
     }
-    if (h !== "" && E !== "" && µ !== "") {
-        e = Math.sqrt(1+2* E * h * h /( µ * µ ))
-        document.getElementById("e").value = e;
-    }
 
 }
 
