@@ -21,7 +21,7 @@ const replace_variables_in_formula = (formula, values) => {
     let processedFormula = formula;
     for (const key in values) {
         if (values[key] == "") continue;
-        processedFormula = processedFormula.replace(" "+key+" ", values[key]);
+        processedFormula = processedFormula.replaceAll(" "+key+" ", values[key]);
     }
     return processedFormula;
 }
@@ -71,10 +71,6 @@ function calculateAll(field_definitions) {
 
 
     // e = c / a
-    if (c !== "" && a !== "") {
-        e = c / a;
-        document.getElementById("e").value = e;
-    }
     if (e !== "" && a !== "") {
         c = e * a;
         document.getElementById("c").value = c;
@@ -121,29 +117,10 @@ function calculateAll(field_definitions) {
         document.getElementById("h").value = h;
     }
     if (h !== "" && E !== "" && µ !== "") {
-        e = Math.sqrt(1 + 2*E*h*h/(µ*µ))
+        e = Math.sqrt(1+2* E * h * h /( µ * µ ))
         document.getElementById("e").value = e;
     }
-    if (apogee !== "" && perigee !== "") {
-        a = (parseInt(apogee) + parseInt(perigee)) / 2;
-        document.getElementById("a").value = a;
-    }
-    if (apogee !== "" && µ !== "") {
-        period = 2*Math.PI * (parseInt(apogee)) / Math.sqrt(µ);
-        document.getElementById("period").value = period;
-    }
-    if (e !== "" && a !== "") {
-        perigee = a * (1-e);
-        document.getElementById("perigee").value = perigee;
-    }
-    if (e !== "" && a !== "") {
-        apogee = a * (1+e);
-        document.getElementById("apogee").value = apogee;
-    }
-    if (µ !== "" && a !== "") {
-        E = -µ / (2*a);
-        document.getElementById("E").value = E;
-    }
+
 }
 
 

@@ -24,20 +24,20 @@
     <script src="calculate.js"></script>
     <script>
         const col1Elements = [
-            {id:"e", placeholder: "eccentricity", label: "eccentricity", formulas:[" c / a "]},
+            {id:"e", placeholder: "eccentricity", label: "eccentricity", formulas:[" c / a ", "Math.sqrt(1+2* E * h * h /( µ * µ ))"]},
             {id:"p", placeholder: "semi-latus rectum", label: "semi-latus rectum"},
             {id:"µ", placeholder: "Standard gravitational parameter [m^3 s^−2]", label: "µ"},
             {id:"h", placeholder: "[m]", label: "angular momentum |h|"},
-            {id:"apogee", placeholder: "[m]", label: "r apogee"},
+            {id:"apogee", placeholder: "[m]", label: "r apogee", formulas: [" a *(1+ e )"]},
             {id:"perigee", placeholder: "[m]", label: "r perigee", formulas: [" a *(1- e )"]},
-            {id:"period", placeholder: "period of the orbit", label: "period of the orbit"},
+            {id:"period", placeholder: "period of the orbit", label: "period of the orbit", formulas: ["2*Math.PI*( apogee /Math.sqrt( µ ))"]},
             {id:"M", placeholder: "Big Mass for gravitational parameter [kg]", label: "Mass"}
     ];
 
     const col2Elements = [
             {id:"c", placeholder: "distance to the focus", label: "c"},
-            {id:"a", placeholder: "semi-major axis", label: "semi-major axis a"},
-            {id:"E", placeholder: "[m²/sec²]", label: "energy E"},
+            {id:"a", placeholder: "semi-major axis", label: "semi-major axis a", formulas: ["( apogee + perigee )/2"]},
+            {id:"E", placeholder: "[m²/sec²]", label: "energy E", formulas: ["- µ /(2* a )"]},
             {id:"v", placeholder: "[m/sec]", label: "|speed|"},
             {id:"r", placeholder: "[m]", label: "|position|"},
             {id:"angle_r_v", placeholder: "rad", label: "angle between v and position"}
