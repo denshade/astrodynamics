@@ -76,18 +76,6 @@ function calculateAll(field_definitions) {
         document.getElementById("h1").value = h1;
         document.getElementById("h2").value = h2;
     }
-    if (v0 !== "" && v1 !== "" &&v2 !== "") {
-        v_old = Math.sqrt(v0 * v0 + v1 * v1 + v2 * v2);
-        document.getElementById("v").value = v_old;
-    }
-    if (pos0 !== "" && pos1 !== "" && pos2 !== "") {
-        r = Math.sqrt(pos0 * pos0 + pos1 * pos1 + pos2 * pos2);
-        document.getElementById("r").value = r;
-    }
-    if (h0 !== "" && h1 !== "" && h2 !== "") {
-        h = Math.sqrt(h0 * h0 + h1*h1 + h2*h2);
-        document.getElementById("h").value = h;
-    }
 
 }
 
@@ -125,6 +113,10 @@ function create_label_from_definition(field_definition) {
 
 function createCell(field_definition, i, field_definitions) {
     var inputEl = document.createElement("input");
+    //  data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"
+    inputEl.setAttribute("data-toggle", "tooltip");
+    inputEl.setAttribute("data-placement", "bottom");
+    inputEl.setAttribute("title", field_definition.formulas);
     inputEl.setAttribute("type", "text");
     inputEl.setAttribute("id", field_definition.id + "" + i);
     inputEl.setAttribute("placeholder", field_definition.placeholder);
