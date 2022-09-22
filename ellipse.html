@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ellipse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+  <body>
+    <div class="container">
+        <img src="Ellipse-param.svg.png"/>
+        <div class="row">
+            <div id="col1" class="col"></div>
+            <div id="col2" class="col"></div>     
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="calculate.js"></script>
+    <script>
+        const col1Elements = [
+            {id:"e", placeholder: "eccentricity", label: "eccentricity", formulas:[" c / a "]},
+            {id:"l", placeholder: "semi-latus rectum", label: "semi-latus rectum", formulas: [" a *(1- e *2)"]},
+            {id:"d", placeholder: "directrix", label: "directrix", formulas:[" a * a / c "," a / e "]}
+    ];
+
+    const col2Elements = [
+            {id:"c", placeholder: "distance to the focus", label: "c", formulas: [" e * a "]},
+            {id:"a", placeholder: "semi-major axis", label: "semi-major axis a", formulas: [" c / e "]},            
+            {id:"b", placeholder: "semi-minor axis", label: "semi-minor axis", formulas: ["Math.sqrt( l * a )"]},
+            {id:"A", placeholder: "area", label: "area", formulas: ["Math.PI* a * b "]},            
+    ];
+    
+    const all_elements = [...col1Elements, ...col2Elements];
+    col1Elements.forEach( i => addElement("col1", i, all_elements));
+    col2Elements.forEach( i => addElement("col2", i,all_elements));
+
+    </script>
+  </body>
+</html>
