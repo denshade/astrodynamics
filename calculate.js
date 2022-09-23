@@ -4,16 +4,21 @@ const hasAllElements= ()  => {
     
 function calculateAllWithFields(field_definitions,elements,values)
 {
-    field_definitions.forEach(field_definition => {
-        if (Array.isArray(field_definition.formulas)) {
-            field_definition.formulas.forEach(formula => {
-                const filled_formula = replace_variables_in_formula(formula, values);
-                if (!has_unfilled_variables(filled_formula)){
-                    elements[field_definition.id].value = eval(filled_formula);
-                }    
-            })    
-        }
-    })
+    do {
+        let changed = false;
+        field_definitions.forEach(field_definition => {
+            if (Array.isArray(field_definition.formulas)) {
+                field_definition.formulas.forEach(formula => {
+                    const filled_formula = replace_variables_in_formula(formula, values);
+                    if (!has_unfilled_variables(filled_formula)){
+                        debugger;
+                        if (elements[field_definition.id].value == "") changed = true;
+                        elements[field_definition.id].value = eval(filled_formula);
+                    }    
+                })    
+            }
+        })    
+    } while (changed);
 
 }
 
