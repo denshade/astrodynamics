@@ -19,7 +19,7 @@ function calculateAllWithFields(field_definitions,elements,values)
                         } else {
                             let current = elements[field_definition.id].value;
                             if (number != current) {
-                                elements[field_definition.id].value = "conflict";
+                                elements[field_definition.id].value = "conflict "+ current + " vs. " + number;
                             }
     
                         }
